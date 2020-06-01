@@ -1,6 +1,6 @@
 import { BehaviorSubject , of  } from 'rxjs';
 import {  catchError } from 'rxjs/operators';
-import FromFetchService from "./fromFetchService/fromFetchService";
+import FromFetchService from "../global/fromFetchService/fromFetchService";
 
 
 const pendingSetter = data => ({

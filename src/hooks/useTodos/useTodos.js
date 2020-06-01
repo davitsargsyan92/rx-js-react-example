@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { useEffect , useState } from "react";
-import todosService from "../services/todosService";
+import todosService from "../../core/services/todosService";
 
 
 const useTodos = () => {

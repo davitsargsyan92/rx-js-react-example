@@ -1,5 +1,5 @@
 import React, {memo, useEffect} from 'react';
-import useTodos from "./useTodos/useTodos";
+import useTodos from "./hooks/useTodos/useTodos";
 
 const Component = () => {
 
