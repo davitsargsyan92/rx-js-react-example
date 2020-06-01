@@ -1,11 +1,18 @@
-import React , {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import useTodos from "./useTodos/useTodos";
 
 const Component = () => {
 
-    const { todos } = useTodos();
+    const { todos , getTodos} = useTodos();
 
-    console.log(todos , 'component')
+
+    console.log(todos , 'todos-component')
+
+    useEffect(() => {
+        getTodos();
+    } , [])
+
+
     return (
         <div>
 
@@ -14,9 +21,4 @@ const Component = () => {
     )
 };
 
-export default memo(Component , (prevProps , nextProps)=> {
-    console.log(prevProps);
-    console.log(nextProps);
-
-    return true
-});
+export default memo(Component);

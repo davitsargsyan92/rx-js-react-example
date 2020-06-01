@@ -1,21 +1,29 @@
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject , of  } from 'rxjs';
+import {  catchError } from 'rxjs/operators';
+import FromFetchService from "./fromFetchService/fromFetchService";
 
+
+const pendingSetter = data => ({
+    isLoading: true,
+    data: data
+});
+
+const doneSetter = data => ({
+    isLoading: false,
+    data
+});
 
 class TodosService {
-    todos = new BehaviorSubject({
-        isLoading : false,
-        data : []
-    });
 
-    getTodos = async () =>  {
-        this.todos.next({isLoading: true, data: []});
-        const response = await fetch('https://jsonplaceholder.typicode.com/todos');
-        const result = await response.json();
-        this.todos.next({
-            isLoading: false,
-            data: result
-        })
+    todos = new BehaviorSubject(doneSetter([]));
+
+    getTodos =  () =>  {
+        this.todos.next(pendingSetter([]));
+        FromFetchService.get('todos').pipe(
+            catchError(error =>  of(error))
+        ).subscribe(async data => this.todos.next(doneSetter(await data.json())))
     }
+
 }
 
 const todosService = new TodosService();

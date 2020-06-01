@@ -1,10 +1,7 @@
 import React, { useEffect, useLayoutEffect , useState } from 'react';
 import useTodos from "./useTodos/useTodos";
 import Component from "./component";
-
-
-
-
+import { Observable , range } from "rxjs";
 
 
 // observable.subscribe(data => console.log(data, 'first'))
@@ -12,14 +9,18 @@ import Component from "./component";
 
 const App = () => {
 
-const {todos , getTodos} = useTodos();
+const { todos  } = useTodos();
+
+console.log(todos , 'todos-app')
 
 useEffect(() => {
-  getTodos()
-}, [])
+
+}, []);
 
 
-  console.log(todos , 'todos')
+
+
+
   return(
     <div >
       <Component/>
